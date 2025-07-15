@@ -9,14 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^6.11.1",
+    "axios": "^1.10.0",
+    "next": "15.4.1",
+    "node-cron": "^4.2.1",
+    "prisma": "^6.11.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.1"
+    "telegraf": "^4.16.3"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
+    "@types/node-cron": "^3.0.11",
     "@types/react": "^19",
-    "@types/react-dom": "^19"
+    "@types/react-dom": "^19",
+    "tsx": "^4.20.3",
+    "typescript": "^5"
   }
 }
