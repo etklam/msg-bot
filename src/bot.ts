@@ -2,6 +2,7 @@
 
 import 'dotenv/config';
 import { telegramBot } from './lib/bot/bot';
+import { initializeServices, shutdownServices } from './lib/services';
 import { botConfig, validateConfig } from './lib/config/bot.config';
 import { logger } from './lib/utils/logger';
 
@@ -11,6 +12,9 @@ async function main() {
     validateConfig();
     logger.info('Configuration validated successfully');
 
+    // Initialize all services
+    await initializeServices();
+    
     // Start the bot
     await telegramBot.start();
     
@@ -29,12 +33,14 @@ async function main() {
 // Handle graceful shutdown
 process.on('SIGTERM', async () => {
   logger.info('Received SIGTERM, shutting down gracefully...');
+  await shutdownServices();
   await telegramBot.stop();
   process.exit(0);
 });
 
 process.on('SIGINT', async () => {
   logger.info('Received SIGINT, shutting down gracefully...');
+  await shutdownServices();
   await telegramBot.stop();
   process.exit(0);
 });
